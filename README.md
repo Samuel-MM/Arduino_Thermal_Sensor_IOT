@@ -21,4 +21,4 @@
  - And a lot of time ;)
 
  You can check our schematic of this project:
- ![Schematic](https://github.com/Samuel-MM/Arduino_Thermal_Sensor_IOT/tree/main/Images/Schematic.png) 
+ ![Schematic](https://github.com/Samuel-MM/Arduino_Thermal_Sensor_IOT/blob/main/Images/Schematic.png) 
