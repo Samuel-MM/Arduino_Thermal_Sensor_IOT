@@ -7,4 +7,5 @@ $factory = (new Factory())->withDatabaseUri('https://your-firebase-link.firebase
 
 $database = $factory->createDatabase();
 $temperature = $database->getReference('temperature: ')->getSnapshot();
+$data = $database->getReference('data')->getSnapshot();
 ?>

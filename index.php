@@ -1,5 +1,6 @@
 <?php
   require('config.php');
+  require('submit.php');
 ?>
 
 <!doctype html>
@@ -94,9 +95,9 @@
           <section class="py-4 mx-md-5 px-md-5 px-2 dataSection shadow-sm">
               <ul>
                 <li>Temperatura atual: <span><?= substr($temperature->getValue(), 0, 5)."ºC";?></span></li>
-                <li class="my-4">Temperatura máxima: <span>120ºC</span></li>
-                <li>Temperatura mínima: <span>80ºC</span></li>
-                <li class="my-4">Temperatura ideal: <span>105ºC</span></li>
+                <li class="my-4">Temperatura máxima: <span><?= $data->getValue()['maxTemp']."ºC";?></span></li>
+                <li>Temperatura mínima: <span><?= $data->getValue()['minTemp']."ºC";?></span></li>
+                <li class="my-4">Temperatura ideal: <span><?= $data->getValue()['idealTemp']."ºC";?></span></li>
                 <li><div class="container">
                   <div class="row ">
                     <div class="col">
@@ -117,17 +118,7 @@
                     </div>
                   </div>
                 </li>
-                <li><div class="container">
-                  <div class="row ">
-                    <div class="col">
-                      Temperatura mais recente: <span>112.5ºC</span>
-                    </div>
-                    <div class="col">
-                      Data: <span>27/10/2021 às 16:40:27</span>
-                    </div>
-                  </div>
-                </li>
-                <li class="my-4">Última manutenção realizada: <span>29/08/2021</span></li>
+                <li class="my-4">Última manutenção realizada: <span><?= date('d/m/Y', strtotime($data->getValue()['lastManutention']));?></span></li>
                 <p class="text-center statusMessage pt-3">A temperatura atual apresenta estabilidade</p>
               </ul>
           </section>
@@ -140,7 +131,7 @@
           <section class="py-4 mx-md-5 px-md-5 px-2 dataSection shadow-sm">
             <h2 class="text-center py-3">Informações gerais</h2>
             <hr>
-            <form action="">
+            <form method="POST" action="submit.php">
               <ul class="py-3">
                 <li><div class="container">
                   <div class="row ">
@@ -148,7 +139,8 @@
                       Temperatura máxima:
                     </div>
                     <div class="col">
-                      <input type="password" id="inputPassword6" class="form-control w-50" aria-describedby="passwordHelpInline">
+                      <input type="text" id="maxTemp" class="form-control w-50" name="maxTemperature"
+                      value="<?=$data->getValue()['maxTemp'];?>">
                     </div>
                   </div>
                 </li>
@@ -158,7 +150,19 @@
                       Temperatura mínima:
                     </div>
                     <div class="col">
-                      <input type="password" id="inputPassword6" class="form-control w-50" aria-describedby="passwordHelpInline">
+                      <input type="text" id="minTemp" class="form-control w-50" name="minTemperature"
+                      value="<?=$data->getValue()['minTemp'];?>">
+                    </div>
+                  </div>
+                </li>
+                <li class="my-4"><div class="container">
+                  <div class="row ">
+                    <div class="col">
+                      Temperatura ideal:
+                    </div>
+                    <div class="col">
+                      <input type="text" id="idealTemp" class="form-control w-50" name="idealTemp"
+                      value="<?=$data->getValue()['idealTemp'];?>">
                     </div>
                   </div>
                 </li>
@@ -168,7 +172,8 @@
                       Data da última manutenção: 
                     </div>
                     <div class="col">
-                      <input type="password" id="inputPassword6" class="form-control w-50" aria-describedby="passwordHelpInline">
+                      <input type="date" id="lastChecked" class="form-control w-50" name="lastCheckedDate"
+                      value="<?= $data->getValue()['lastManutention'];?>">
                     </div>
                   </div>
                 </li>
@@ -178,7 +183,8 @@
                       Quantia de aferições para o alerta:
                     </div>
                     <div class="col">
-                      <input type="password" id="inputPassword6" class="form-control w-50" aria-describedby="passwordHelpInline">
+                      <input type="text" id="alertNumber" class="form-control w-50" name="alertNumber"
+                      value="<?=$data->getValue()['alertNumber'];?>">
                     </div>
                   </div>
                 </li>
@@ -188,7 +194,8 @@
                       Tempo entre aferições: 
                     </div>
                     <div class="col">
-                      <input type="password" id="inputPassword6" class="form-control w-50" aria-describedby="passwordHelpInline">
+                      <input type="text" id="timeBetween" class="form-control w-50" name="timeBetween"
+                      value="<?=$data->getValue()['timeBetween'];?>">
                     </div>
                   </div>
                 </li>
@@ -203,7 +210,8 @@
                       Responsável técnico: 
                     </div>
                     <div class="col">
-                      <input type="password" id="inputPassword6" class="form-control w-50" aria-describedby="passwordHelpInline">
+                      <input type="text" id="user" class="form-control w-50" name="user"
+                      value="<?=$data->getValue()['user'];?>">
                     </div>
                   </div>
                 </li>
@@ -213,7 +221,8 @@
                       Número de telefone: 
                     </div>
                     <div class="col">
-                      <input type="password" id="inputPassword6" class="form-control w-50" aria-describedby="passwordHelpInline">
+                      <input type="tel" id="phone" class="form-control w-50" name="phone"
+                      value="<?=$data->getValue()['phone'];?>">
                     </div>
                   </div>
                 </li>
@@ -223,7 +232,8 @@
                       E-mail: 
                     </div>
                     <div class="col">
-                      <input type="password" id="inputPassword6" class="form-control w-50" aria-describedby="passwordHelpInline">
+                      <input type="email" id="email" class="form-control w-50" name="email"
+                      value="<?=$data->getValue()['email'];?>">
                     </div>
                   </div>
                 </li>
