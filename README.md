@@ -21,4 +21,9 @@
  - And a lot of time ;)
 
  You can check our schematic of this project:
- ![Schematic](https://github.com/Samuel-MM/Arduino_Thermal_Sensor_IOT/blob/main/Images/Schematic.png) 
+ ![Schematic](https://github.com/Samuel-MM/Arduino_Thermal_Sensor_IOT/blob/main/Images/Schematic.png)
+
+ This project used kreait in order to connect to firebase and get it's data. To install it we used composer.
+
+ Composer: https://getcomposer.org
+ Installing kreait: composer require kreait/firebase-php ^5.0
